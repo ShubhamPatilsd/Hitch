@@ -27,19 +27,22 @@ export default async function handler(
     include: { location: true, sessions: true },
   });
 
-
   const people = otherPeople.filter(
     (person) =>
-      person && person.email !== session.user.email &&
-      person.sessions.length > 0 && person.location &&
+      person &&
+      person.email !== session.user.email &&
+      person.online &&
+      person.location &&
       convertDistance(
-        Math.abs(getDistance(
-          {
-            latitude: req.body.location.latitude,
-            longitude: req.body.location.longitude,
-          },
-          person.location
-        )),
+        Math.abs(
+          getDistance(
+            {
+              latitude: req.body.location.latitude,
+              longitude: req.body.location.longitude,
+            },
+            person.location
+          )
+        ),
         "mi"
       ) <= 5
   );

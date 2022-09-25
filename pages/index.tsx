@@ -28,7 +28,6 @@ const Home: NextPage = () => {
           longitude: position.coords.longitude,
         });
 
-
         await axios({
           url: "/api/updateLocation",
           method: "POST",
@@ -57,7 +56,6 @@ const Home: NextPage = () => {
           type: "FeatureCollection",
           features: [],
         };
-
 
         newPeople.forEach((person) => {
           newArray.features.push({
@@ -104,30 +102,22 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    // const id = setInterval(() => {
-    // if (session) {
-      try{
-      locationStuff();
-      }catch(err){
-        //
-      }
+    const handleWindowClose = async () => {
+      await axios({ url: "/api/goOffline", method: "POST" });
+    };
 
-      router.beforePopState(({ as }) => {
-        if (as !== router.asPath) {
-            // Will run when leaving the current page; on back/forward actions
-            // Add your logic here, like toggling the modal state
-            console.log("hi")
-        }
-        return true;
-    });
+    try {
+      locationStuff();
+    } catch (err) {
+      //
+    }
+
+    window.addEventListener("beforeunload", handleWindowClose);
 
     return () => {
-        router.beforePopState(() => true);
+      window.removeEventListener("beforeunload", handleWindowClose);
     };
-    // }
-    // }, 1000);
-    // return () => clearInterval(id);
-  }, [router]);
+  }, []);
 
   if (session) {
     return (
