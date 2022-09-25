@@ -225,7 +225,7 @@ export const Map = ({ location, people }) => {
     return location ? (
       <div className="space-y-2 px-4 lg:px-0">
         <form onSubmit={submitForm} className="flex space-x-2">
-          <div className="flex flex-col">
+          <div className="flex items-center space-x-3">
             <label className="font-bold" htmlFor="to">
               To
             </label>
