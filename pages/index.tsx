@@ -108,12 +108,16 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     // const id = setInterval(() => {
-    if (session) {
+    // if (session) {
+      try{
       locationStuff();
-    }
+      }catch(err){
+        //
+      }
+    // }
     // }, 1000);
     // return () => clearInterval(id);
-  }, [session]);
+  }, []);
 
   if (session) {
     return (

@@ -3,14 +3,13 @@ import prisma from "../../util/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 // import { unstable_getServerSession } from "next-auth/next";
 import { getSession } from "next-auth/react";
-import authOptions from "./auth/[...nextauth]";
+import authOptions from "../api/auth/[...nextauth]";
 import { getDistance, convertDistance } from "geolib";
 import { GeolibInputCoordinates } from "geolib/es/types";
 
 type Data = {
   success: boolean;
   err?: any;
-  status?: any;
 };
 
 export default async function handler(
@@ -18,18 +17,31 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   //   try {
+  const { location } = req.body;
   const session = await getSession({ req });
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
     },
+    include: { location: true },
   });
 
-  if (user) {
-    res.json({ success: true, status: JSON.parse(user.status) });
+  if (!user.location) {
+    await prisma.location.create({
+      data: {
+        userId: user.id,
+        latitude: location.latitude,
+        longitude: location.longitude,
+      },
+    });
   } else {
-    res.json({ success: false, err: "User not there" });
+    await prisma.location.update({
+      where: { userId: user.id },
+      data: { latitude: location.latitude, longitude: location.longitude },
+    });
   }
+
+  res.json({ success: true });
 
   //   } catch (err) {
   //     console.log(err);
