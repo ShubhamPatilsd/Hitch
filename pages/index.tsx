@@ -111,10 +111,23 @@ const Home: NextPage = () => {
       }catch(err){
         //
       }
+
+      router.beforePopState(({ as }) => {
+        if (as !== router.asPath) {
+            // Will run when leaving the current page; on back/forward actions
+            // Add your logic here, like toggling the modal state
+            console.log("hi")
+        }
+        return true;
+    });
+
+    return () => {
+        router.beforePopState(() => true);
+    };
     // }
     // }, 1000);
     // return () => clearInterval(id);
-  }, []);
+  }, [router]);
 
   if (session) {
     return (

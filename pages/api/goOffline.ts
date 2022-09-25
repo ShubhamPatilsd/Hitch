@@ -17,13 +17,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   //   try {
-  const { location } = req.body;
   const session = await getSession({ req });
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email,
     },
-    include: { location: true },
   });
   if(user){
     await prisma.user.update({
@@ -31,29 +29,14 @@ export default async function handler(
         id: user.id
       },
       data:{
-        online: true
+        online: false
       }
     })
+    res.json({ success: true });
+
+  }else{
+    res.json({ success: false, err:"User not there in db" });
   }
-
-  if (user && !user.location) {
-    await prisma.location.create({
-      data: {
-        userId: user.id,
-        latitude: location.latitude,
-        longitude: location.longitude,
-      },
-    });
-  } else {
-    await prisma.location.update({
-      where: { userId: user.id },
-      data: { latitude: location.latitude, longitude: location.longitude },
-    });
-
-
-  }
-
-  res.json({ success: true });
 
   //   } catch (err) {
   //     console.log(err);
