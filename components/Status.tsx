@@ -55,7 +55,7 @@ export const Status = () => {
               setTravelStatus(e.target.value);
             }}
             value={travelStatus}
-            className="rounded-lg border-2 border-black bg-white text-sm px-2"
+            className="rounded-lg border-2 border-black bg-white text-sm px-1 text-left "
           >
             <option value="driving">am driving</option>
             <option value="going">want to go</option>
