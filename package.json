@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mapbox/geojson-merge": "^1.1.1",
+    "@mapbox/mapbox-gl-directions": "^4.1.0",
+    "@next-auth/prisma-adapter": "^1.0.4",
+    "@prisma/client": "^4.3.1",
+    "@types/next-auth": "^3.15.0",
+    "axios": "^0.27.2",
+    "geolib": "^3.3.3",
+    "mapbox-gl": "^2.10.0",
     "next": "12.3.1",
+    "next-auth": "^4.10.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "@types/node": "18.7.20",
@@ -21,6 +31,7 @@
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.16",
+    "prisma": "^4.3.1",
     "tailwindcss": "^3.1.8",
     "typescript": "4.8.3"
   }
