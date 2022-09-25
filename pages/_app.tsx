@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
   return (
@@ -14,6 +16,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
       </Head>
       <SessionProvider session={session}>
         {" "}
+        <ToastContainer />
         <Component {...pageProps} />{" "}
       </SessionProvider>
     </>

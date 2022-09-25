@@ -25,7 +25,7 @@ export default async function handler(
   });
 
   const otherPeople = await prisma.user.findMany({
-    include: { location: true },
+    include: { location: true, sessions: true },
   });
 
   console.log(req.body.location);
@@ -33,6 +33,7 @@ export default async function handler(
   const people = otherPeople.filter(
     (person) =>
       person.email !== session.user.email &&
+      person.sessions.length > 0 &&
       convertDistance(
         getDistance(
           {

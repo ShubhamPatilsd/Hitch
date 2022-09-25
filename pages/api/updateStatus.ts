@@ -10,7 +10,6 @@ import { GeolibInputCoordinates } from "geolib/es/types";
 type Data = {
   success: boolean;
   err?: any;
-  status?: any;
 };
 
 export default async function handler(
@@ -26,7 +25,12 @@ export default async function handler(
   });
 
   if (user) {
-    res.json({ success: true, status: JSON.parse(user.status) });
+    await prisma.user.update({
+      where: { email: user.email },
+      data: { status: req.body.status },
+    });
+
+    res.json({ success: true });
   } else {
     res.json({ success: false, err: "User not there" });
   }
