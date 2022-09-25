@@ -12,7 +12,7 @@ export const PeopleCard = ({
   return (
     <div>
       <div
-        className={`flex w-full justify-center space-x-3 items-center rounded-lg hover:bg-gray-100 transition ease-in-out p-4 `}
+        className={`flex flex-col-reverse xl:flex-row w-full justify-center space-x-3 items-center rounded-lg hover:bg-gray-100 transition ease-in-out p-4 `}
       >
         <div className="space-y-2">
           <div>

@@ -123,7 +123,7 @@ const Home: NextPage = () => {
         <Navbar />
         <div className="space-y-4">
           <Status />
-          <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
+          <div className="flex flex-col lg:flex-row space-y-3 lg:space-y-0 lg:space-x-6">
             <SearchPeople people={people} />
             {/* Signed in as {session.user.email} <br />{" "} */}
             {/* <button onClick={() => signOut()}>Sign out</button> */}

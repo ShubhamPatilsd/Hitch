@@ -4,7 +4,7 @@ import { PeopleCard } from "./PeopleCard";
 
 export const SearchPeople = ({ people }) => {
   return (
-    <div className="mx-4 h-full space-y-2">
+    <div className="ml-4 h-full space-y-2">
       <h2 className="text-xl md:text-2xl font-semibold">People near you</h2>
       <div className="space-y-2 overflow-y-auto">
         {people && people.length > 0 ? (

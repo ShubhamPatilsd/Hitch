@@ -70,12 +70,12 @@ export const Map = ({ location, people }) => {
     useEffect(() => {
       // console.log(location);
 
-      console.log(people, "people");
+      // console.log(people, "people");
 
       //   setRoute(route.features ? concatGeoJSON(route, people) : people);
       //   setRoute(route.features ? concatGeoJSON(route, geojson) : geojson);
 
-      console.log(route, "route");
+      // console.log(route, "route");
       //   setRoute(route.features ? concatGeoJSON(route, geojson) : geojson);
       //   setRoute(geojson);
 
@@ -223,7 +223,7 @@ export const Map = ({ location, people }) => {
     }, [people, route]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return location ? (
-      <div className="space-y-2 px-4">
+      <div className="space-y-2 px-4 lg:px-0">
         <form onSubmit={submitForm} className="flex space-x-2">
           <div className="flex flex-col">
             <label className="font-bold" htmlFor="to">
