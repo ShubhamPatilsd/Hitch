@@ -15,7 +15,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req.body);
   const session = await getSession({ req });
   const user = await prisma.user.findUnique({
     where: {
@@ -28,7 +27,6 @@ export default async function handler(
     include: { location: true, sessions: true },
   });
 
-  console.log(req.body.location,"loc");
 
   const people = otherPeople.filter(
     (person) =>

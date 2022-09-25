@@ -28,7 +28,6 @@ const Home: NextPage = () => {
           longitude: position.coords.longitude,
         });
 
-        console.log(location);
 
         await axios({
           url: "/api/updateLocation",
@@ -59,7 +58,6 @@ const Home: NextPage = () => {
           features: [],
         };
 
-        console.log(newPeople);
 
         newPeople.forEach((person) => {
           newArray.features.push({
@@ -100,7 +98,6 @@ const Home: NextPage = () => {
 
         // setPeople(newArray);
         setPeople(result.data.people);
-        console.log(newArray, "new");
         setSecondPeople(newArray);
       });
     }
