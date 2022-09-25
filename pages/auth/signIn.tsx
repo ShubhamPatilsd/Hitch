@@ -19,7 +19,7 @@ export default function SignIn({ session }) {
       <div className="space-y-5 border-8 rounded-lg border-black p-6 max-w-2xl">
         <h1 className="text-6xl font-bold">Sign In</h1>
         <p className="max-w-xl">
-          Whether you're looking to drive or need to go somewhere, Cheetah's got
+          Whether you're looking to drive or need to go somewhere, Hitch has got
           your back.
         </p>
         <button
