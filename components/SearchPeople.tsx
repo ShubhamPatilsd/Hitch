@@ -5,7 +5,7 @@ import { PeopleCard } from "./PeopleCard";
 export const SearchPeople = ({ people }) => {
   return (
     <div className="mx-4 h-full space-y-2">
-      <h2 className="text-xl md:text-3xl font-semibold">People near you</h2>
+      <h2 className="text-xl md:text-2xl font-semibold">People near you</h2>
       <div className="space-y-2 overflow-y-auto">
         {people && people.length > 0 ? (
           people.map((person, i) => {
@@ -27,7 +27,7 @@ export const SearchPeople = ({ people }) => {
           })
         ) : (
           <p className="text-xs text-center text-gray-600">
-            Nobody wants to ride right now :(
+            Nobody is online right now :(
           </p>
         )}
       </div>

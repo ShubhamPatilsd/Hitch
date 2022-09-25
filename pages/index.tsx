@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { NextPage } from "next";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { SearchPeople } from "../components/SearchPeople";
@@ -122,14 +122,14 @@ const Home: NextPage = () => {
         <Navbar />
         <div className="space-y-4">
           <Status />
-          <div className="flex flex-col md:flex-row space-x-4">
+          <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
             <SearchPeople people={people} />
             {/* Signed in as {session.user.email} <br />{" "} */}
             {/* <button onClick={() => signOut()}>Sign out</button> */}
             {location.latitude !== null && location.longitude !== null ? (
               <Map location={location} people={secondPeople} />
             ) : (
-              <div className="w-[92vw] md:w-[70vw] h-[65vh] md:h-[65vh] animate-pulse rounded-lg bg-gray-100"></div>
+              <div className="w-[92vw] md:w-[78vw] h-[65vh] md:h-[65vh] animate-pulse rounded-lg bg-gray-100"></div>
             )}
           </div>
         </div>
@@ -145,5 +145,18 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const session = await getSession({ req });
+
+  if (!session) {
+    return {
+      redirect: { destination: "/auth/signIn" },
+    };
+  }
+
+  return { props: { session } };
+}
 
 export default Home;

@@ -223,7 +223,7 @@ export const Map = ({ location, people }) => {
     }, [people, route]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return location ? (
-      <div className="space-y-2">
+      <div className="space-y-2 px-4">
         <form onSubmit={submitForm} className="flex space-x-2">
           <div className="flex flex-col">
             <label className="font-bold" htmlFor="to">
@@ -238,7 +238,7 @@ export const Map = ({ location, people }) => {
           {/* <input type={"submit"} value="Submit" /> */}
         </form>
         <div
-          className="map-container w-[92vw] md:w-[70vw] h-[65vh] md:h-[68vh]"
+          className="map-container w-[92vw] md:w-[78vw] h-[65vh] md:h-[68vh]"
           ref={mapContainerRef}
         />
       </div>

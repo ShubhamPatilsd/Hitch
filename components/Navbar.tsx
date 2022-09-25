@@ -6,7 +6,7 @@ export const Navbar = () => {
   const { data: session } = useSession();
   return (
     <div className="flex items-center p-4 justify-between ">
-      <h1 className="text-2xl md:text-4xl font-black">Cheetah</h1>
+      <h1 className="text-2xl md:text-4xl font-black select-none">Cheetah</h1>
       <div className="flex items-center space-x-4 hover:bg-gray-100 transition ease-in-out p-4 rounded-lg">
         <img
           src={session.user.image}

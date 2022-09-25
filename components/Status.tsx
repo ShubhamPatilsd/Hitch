@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const Status = () => {
   const { data: session } = useSession();
@@ -44,33 +45,57 @@ export const Status = () => {
 
   return (
     <div className="px-4 space-x-4 flex items-center">
-      <div>
-        I{" "}
-        <select
-          onChange={(e) => {
-            setUpdate(true);
-            setTravelStatus(e.target.value);
-          }}
-          value={travelStatus}
-          className="rounded-lg border-2 border-black bg-white text-sm"
-        >
-          <option value="driving">am driving</option>
-          <option value="going">want to go</option>
-        </select>
-        {" to "}
-        <input
-          onChange={(e) => {
-            setUpdate(true);
-            setLocationStatus(e.target.value);
-          }}
-          value={locationStatus}
-          className="rounded-lg border-2 border-black px-2 text-sm"
-        />
+      <div className="flex space-x-2 items-center">
+        <p className="font-bold text-lg">Status: </p>
+        <div>
+          I{" "}
+          <select
+            onChange={(e) => {
+              setUpdate(true);
+              setTravelStatus(e.target.value);
+            }}
+            value={travelStatus}
+            className="rounded-lg border-2 border-black bg-white text-sm px-2"
+          >
+            <option value="driving">am driving</option>
+            <option value="going">want to go</option>
+          </select>
+          {" to "}
+          <input
+            onChange={(e) => {
+              setUpdate(true);
+              setLocationStatus(e.target.value);
+            }}
+            value={locationStatus}
+            className="rounded-lg border-2 border-black px-2 text-sm"
+          />
+        </div>
       </div>
       {update ? (
         <button
           onClick={() => {
-            updateStatus();
+            try {
+              updateStatus();
+              toast.success("Updated Status", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } catch (err) {
+              toast.error("Couldn't update status", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
           }}
           className="px-4 bg-black rounded-lg text-white"
         >

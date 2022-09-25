@@ -33,7 +33,10 @@ export const PeopleCard = ({
             }
           </p>
         </div>
-        <img src={user.image || ""} className="rounded-full w-16 h-16" />
+        <div>
+          <img src={user.image || ""} className="rounded-full w-16 h-16" />
+          <div className="rounded-full h-4 w-4 bg-green-500 -translate-y-16 right-0 translate-x-12"></div>
+        </div>
       </div>
       <div
         className={`${
