@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import { HiOutlineLogout } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const { data: session } = useSession();
@@ -23,8 +25,21 @@ export const Navbar = () => {
         </div>
 
         <button
-          onClick={() => {
-            signOut();
+          onClick={async () => {
+            try {
+              await axios({ url: "/api/goOffline", method: "POST" });
+              signOut();
+            } catch (err) {
+              toast.error("Could not log out!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
           }}
         >
           <HiOutlineLogout size={25} />
